@@ -23,13 +23,14 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { login } from "@/app/login/actions";
+import Link from "next/link";
 
 const formSchema = z.object({
   email: z.string().email(),
   password: z.string().min(8),
 });
 
-export default function LoginPage() {
+export default function LogInPage() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -59,7 +60,7 @@ export default function LoginPage() {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel htmlFor="Email">Email</FormLabel>
                     <FormControl>
                       <Input type="email" placeholder="Email..." {...field} />
                     </FormControl>
@@ -73,7 +74,7 @@ export default function LoginPage() {
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Password</FormLabel>
+                    <FormLabel htmlFor="Password">Password</FormLabel>
                     <FormControl>
                       <Input
                         type="password"
@@ -81,14 +82,22 @@ export default function LoginPage() {
                         {...field}
                       />
                     </FormControl>
-                    <FormDescription>Enter your email address</FormDescription>
+                    <FormDescription>Enter your password</FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-              <Button type="submit">Submit</Button>
+              <Button className="w-full" type="submit">
+                Submit
+              </Button>
             </form>
           </Form>
+          <div className="mt-4 text-center text-sm text-muted-foreground">
+            Want to create an account?{" "}
+            <Link href="/signup" className="underline">
+              Sign Up
+            </Link>
+          </div>
         </CardContent>
       </Card>
     </main>
