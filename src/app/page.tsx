@@ -1,7 +1,7 @@
-export default function Home() {
+export default async function Home() {
   return (
     <main>
-      <h1>Noteglow</h1>
+      <h1>Home</h1>
     </main>
   );
 }
